@@ -94,7 +94,8 @@ stream = pa.open(format=paInt16, channels=1, rate=SAMPLING_RATE, input=True,
 '''
 
 token = get_token()
-key = '05ba411481c8cfa61b91124ef7389767'
+key = 'cd7e3fc43068446a8924c7c885686bad' #chezai
+#key = 'c15d710162ff4b01a92e702947ce015f' #zidingyi
 api = 'http://www.tuling123.com/openapi/api?key=' + key + '&info='
 
 #while True:
@@ -149,12 +150,13 @@ api = 'http://www.tuling123.com/openapi/api?key=' + key + '&info='
                 print filename, "保存成功正在进行语音识别"
         '''
 while(True):
-    os.system('arecord -D "plughw:1,0" -f S16_LE -d 5 -r 8000 /home/pi/python_yuyinduihua/Rasp/2.wav')
+    os.system('arecord -D "plughw:1,0" -f S16_LE -d 5 -r 8000 /home/pi/connectedcar/2.wav')
     use_cloud(token)
-    #print duihua
+    print duihua
     info = duihua
     duihua = ""
-    request = api + info
+    request = api + info +  '&userid='+ '12345678'
+    #request = api + info
     response = getHtml(request)
     dic_json = json.loads(response)
     print '机器人: '.decode('utf-8') + dic_json['text']

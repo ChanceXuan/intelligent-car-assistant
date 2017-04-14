@@ -9,7 +9,9 @@ import base64
 import json
 import os
 import sys
+import ssl
 reload(sys)
+ssl._create_default_https_context = ssl._create_unverified_context
 sys.setdefaultencoding( "utf-8" )
 
 save_count = 0
@@ -148,7 +150,7 @@ api = 'http://www.tuling123.com/openapi/api?key=' + key + '&info='
         '''
 while(True):
     print "kaishi"
-    os.system('arecord -D "plughw:1,0" -f S16_LE -d 3 -r 8000 /home/pi/yuyinduihua/2.wav')
+    os.system('arecord -D "plughw:1,0" -f S16_LE -d 3 -r 8000 /home/pi/connectedcar/2.wav')
     use_cloud(token)
     print "输入内容"
     print duihua
